@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}StackJourney{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to StackJourney</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/accounts/login/">Login</a>
+            <a href="/accounts/signup/">Signup</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 StackJourney</p>
+    </footer>
+</body>
+</html>
