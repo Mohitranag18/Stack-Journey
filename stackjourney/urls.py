@@ -22,3 +22,9 @@ urlpatterns = [
     path('', include('blogs.urls')),  # For blog-related pages
     path('accounts/', include('users.urls')),  # For user-related pages
 ]
+from django.conf import settings
+from django.conf.urls.static import static
+
+# Add this to serve media files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

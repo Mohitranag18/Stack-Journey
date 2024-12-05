@@ -10,8 +10,15 @@
         <h1>Welcome to StackJourney</h1>
         <nav>
             <a href="/">Home</a>
-            <a href="/accounts/login/">Login</a>
-            <a href="/accounts/signup/">Signup</a>
+            {% if user.is_authenticated %}
+                <p>Welcome, {{ user.username }}!</p>
+                <a href="{% url 'logout' %}">Logout</a>
+                <a href="{% url 'create_blog_post' %}">Create Post</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'signup' %}">Signup</a>
+            {% endif %}
+
         </nav>
     </header>
 

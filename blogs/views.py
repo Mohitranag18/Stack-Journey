@@ -4,7 +4,8 @@ from .forms import BlogPostForm
 from django.contrib.auth.decorators import login_required
 
 def home(request):
-    return render(request, 'blogs/home.html')
+    blog_posts = BlogPost.objects.all().order_by('-created_at')
+    return render(request, 'blogs/home.html', {'blog_posts': blog_posts})
 
 @login_required
 def create_blog_post(request):
@@ -20,7 +21,7 @@ def create_blog_post(request):
     return render(request, 'blogs/create_blog_post.html',{'form': form})
 
 @login_required
-def edit_blog__post(request, pk):
+def edit_blog_post(request, pk):
     blog_post = get_object_or_404(BlogPost, pk=pk)
 
     if request.user != blog_post.author:
@@ -46,3 +47,7 @@ def delete_blog_post(request, pk):
         blog_post.delete()
         return redirect('home')
     return render(request, 'blogs/confirm_delete.html', {'blog_post': blog_post})
+
+def view_blog_post(request, pk):
+    post = get_object_or_404(BlogPost, pk=pk)  # Retrieve the blog post or show 404
+    return render(request, 'blogs/view_blog_post.html', {'post': post})

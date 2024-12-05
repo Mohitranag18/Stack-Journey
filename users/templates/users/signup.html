@@ -5,6 +5,8 @@
 {% block content %}
 <h2>Signup</h2>
 <form method="post">
-    <!-- Login form fields go here -->
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Signup</button>
 </form>
 {% endblock %}

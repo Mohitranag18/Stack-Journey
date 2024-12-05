@@ -3,6 +3,19 @@
 {% block title %}Home - StackJourney{% endblock %}
 
 {% block content %}
-<h2>Blog Home</h2>
-<p>Welcome to the StackJourney blog platform!</p>
+<h2>Blog Posts</h2>
+{% if blog_posts %}
+    <ul>
+    {% for post in blog_posts %}
+        <li>
+            <h3><a href="{% url 'view_blog_post' post.pk %}">{{ post.title }}</a></h3>
+            <p>{{ post.content|truncatewords:20 }}</p>
+            <p><strong>By:</strong> {{ post.author.username }}</p>
+            <a href="{% url 'view_blog_post' post.pk %}">Read More</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No blog posts available.</p>
+{% endif %}
 {% endblock %}
