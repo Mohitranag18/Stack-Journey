@@ -8,6 +8,9 @@ def login_view(request):
 def signup_view(request):
     return render(request, 'users/signup.html')
 
+def logout_confirm(request):
+    return render(request, 'users/logout_confirmation.html')
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
