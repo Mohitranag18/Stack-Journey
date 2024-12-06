@@ -1,33 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}StackJourney{% endblock %}</title>
+    <link href="{% static 'css/output.css' %}" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <h1>Welcome to StackJourney</h1>
-        <nav>
-            <a href="/">Home</a>
-            {% if user.is_authenticated %}
-                <p>Welcome, {{ user.username }}!</p>
-                <a href="{% url 'logout_confirm' %}">Logout</a>
-                <a href="{% url 'create_blog_post' %}">Create Post</a>
-            {% else %}
-                <a href="{% url 'login' %}">Login</a>
-                <a href="{% url 'signup' %}">Signup</a>
-            {% endif %}
-
-        </nav>
+<body class="bg-gray-100 text-gray-900">
+    <header class="bg-red-500 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">StackJourney</h1>
+            <nav class="flex space-x-4">
+                <a href="/" class="hover:underline">Home</a>
+                {% if user.is_authenticated %}
+                    <div class="flex space-x-4 items-center">
+                        <a href="{% url 'create_blog_post' %}" class="hover:underline">Create Post</a>
+                        <a href="{% url 'logout_confirm' %}" class="hover:underline">Logout</a>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login' %}" class="hover:underline">Login</a>
+                    <a href="{% url 'signup' %}" class="hover:underline">Signup</a>
+                {% endif %}
+            </nav>
+        </div>
     </header>
 
-    <main>
+    <main class="container mx-auto py-6">
         {% block content %}{% endblock %}
     </main>
 
-    <footer>
-        <p>&copy; 2024 StackJourney</p>
+    <footer class="bg-gray-800 text-white p-4 mt-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 StackJourney</p>
+        </div>
     </footer>
 </body>
 </html>

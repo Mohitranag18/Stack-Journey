@@ -9,5 +9,17 @@
     {% if post.image %}
         <img src="{{ post.image.url }}" alt="{{ post.title }}">
     {% endif %}
+
+    {% if user.is_authenticated and user == post.author %}
+    <!-- Edit Blog -->
+    <a href="{% url 'edit_blog_post' post.id %}">Edit</a>
+    
+    <!-- Delete Blog -->
+    <form action="{% url 'delete_blog_post' post.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
+    </form>
+    {% endif %}
+
     <a href="{% url 'home' %}">Back to Home</a>
 {% endblock %}

@@ -7,11 +7,11 @@
 {% if blog_posts %}
     <ul>
     {% for post in blog_posts %}
-        <li>
+        <li class="p-4 bg-gray-200 rounded-lg m-9">
             <h3><a href="{% url 'view_blog_post' post.pk %}">{{ post.title }}</a></h3>
             <p>{{ post.content|truncatewords:20 }}</p>
             <p><strong>By:</strong> {{ post.author.username }}</p>
-            <a href="{% url 'view_blog_post' post.pk %}">Read More</a>
+            <a href="{% url 'view_blog_post' post.pk %}" class="text-red-600">Read More</a>
         </li>
     {% endfor %}
     </ul>

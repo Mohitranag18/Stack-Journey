@@ -132,3 +132,9 @@ LOGOUT_REDIRECT_URL = '/'
 
 MEDIA_URL = '/media/'  # URL to access media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Directory to store media files
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]

@@ -2,12 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
-def login_view(request):
-    return render(request, 'users/login.html')
-
-def signup_view(request):
-    return render(request, 'users/signup.html')
-
 def logout_confirm(request):
     return render(request, 'users/logout_confirmation.html')
 
