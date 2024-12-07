@@ -3,10 +3,33 @@
 {% block title %}Login - StackJourney{% endblock %}
 
 {% block content %}
-<h2>Login</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-</form>
+<div class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="p-8 rounded-lg shadow-lg max-w-md w-full bg-gray-300">
+        <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center">Login</h2>
+        <form method="POST" class="flex flex-col space-y-6">
+            {% csrf_token %}
+            <div class="flex flex-col space-y-2">
+                <label for="{{ form.username.id_for_label }}" class="text-gray-600">Username</label>
+                {{ form.username }}
+                <p class="text-sm text-red-500">{{ form.username.errors }}</p>
+            </div>
+            <div class="flex flex-col space-y-2">
+                <label for="{{ form.password.id_for_label }}" class="text-gray-600">Password</label>
+                {{ form.password }}
+                <p class="text-sm text-red-500">{{ form.password.errors }}</p>
+            </div>
+            <button 
+                type="submit" 
+                class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                Login
+            </button>
+        </form>
+        <div class="text-center mt-4">
+            <p class="text-sm text-gray-600">Don't have an account? 
+                <a href="{% url 'signup' %}" class="text-blue-500 hover:underline">Sign Up</a>
+            </p>
+        </div>
+    </div>
+</div>
 {% endblock %}
+

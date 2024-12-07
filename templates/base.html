@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}StackJourney{% endblock %}</title>
     <link href="{% static 'css/output.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="bg-gray-100 text-gray-900">
     <header class="bg-red-500 text-white p-4">
@@ -16,7 +17,7 @@
                 {% if user.is_authenticated %}
                     <div class="flex space-x-4 items-center">
                         <a href="{% url 'create_blog_post' %}" class="hover:underline">Create Post</a>
-                        <a href="{% url 'logout_confirm' %}" class="hover:underline">Logout</a>
+                        <a href="{% url 'user_profile' username=request.user.username %}" class="hover:underline">View Profile</a>
                     </div>
                 {% else %}
                     <a href="{% url 'login' %}" class="hover:underline">Login</a>
@@ -30,10 +31,56 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="bg-gray-800 text-white p-4 mt-6">
-        <div class="container mx-auto text-center">
-            <p>&copy; 2024 StackJourney</p>
+    <footer class="bg-gray-800 text-gray-200 mt-6">
+        <div class="container mx-auto py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            <!-- Categories -->
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Categories</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Guidance</a></li>
+                    <li><a href="#" class="hover:underline">Experience</a></li>
+                    <li><a href="#" class="hover:underline">Tech Blogs</a></li>
+                    <li><a href="#" class="hover:underline">Career Tips</a></li>
+                </ul>
+            </div>
+    
+            <!-- Follow -->
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Instagram</a></li>
+                    <li><a href="#" class="hover:underline">Twitter</a></li>
+                    <li><a href="#" class="hover:underline">LinkedIn</a></li>
+                    <li><a href="#" class="hover:underline">Facebook</a></li>
+                    <li><a href="#" class="hover:underline">Discord</a></li>
+                </ul>
+            </div>
+    
+            <!-- Contact -->
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                <ul class="space-y-2">
+                    <li><a href="mailto:support@stackjourney.com" class="hover:underline">support@stackjourney.com</a></li>
+                    <li><p>123 Tech Avenue, Innovation City</p></li>
+                </ul>
+            </div>
+    
+            <!-- Legal -->
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Legal</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Terms of Service</a></li>
+                    <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:underline">Cookies Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- Bottom Bar -->
+        <div class="bg-gray-900 text-gray-400 text-sm py-4 text-center">
+            <p>&copy; 2024 StackJourney. All rights reserved.</p>
         </div>
     </footer>
+    
 </body>
 </html>

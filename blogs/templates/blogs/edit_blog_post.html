@@ -3,10 +3,52 @@
 {% block title %}Edit Blog Post{% endblock %}
 
 {% block content %}
-<h2>Edit Blog Post</h2>
-<form method="post" enctype="multipart/form-data">
+<h2 class="text-2xl font-bold mb-4">Edit Blog Post</h2>
+<form method="post" enctype="multipart/form-data" class="w-full space-y-6 bg-white flex flex-col items-start rounded-md shadow-md px-6 pb-6">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save Changes</button>
+    
+    <!-- Title Field -->
+    <div class="mt-4 w-[95%] m-auto">
+        <label for="id_title" class="block text-base font-medium text-gray-700 mb-2"><strong>Title</strong></label>
+        {{ form.title }}
+        {% if form.title.errors %}
+            <p class="text-red-500 text-sm">{{ form.title.errors|first }}</p>
+        {% endif %}
+    </div>
+    
+    <!-- Content Field -->
+    <div class="mt-4 w-[95%] m-auto">
+        <label for="id_content" class="block text-base font-medium text-gray-700 mb-2"><strong>Content</strong></label>
+        {{ form.content }}
+        {% if form.content.errors %}
+            <p class="text-red-500 text-sm">{{ form.content.errors|first }}</p>
+        {% endif %}
+    </div>
+    
+    <!-- Image Field -->
+    <div class="mt-4 w-[95%] m-auto">
+        <label for="id_image" class="block text-base font-medium text-gray-700 mb-2"><strong>Image</strong></label>
+        {{ form.image }}
+        {% if form.image.errors %}
+            <p class="text-red-500 text-sm">{{ form.image.errors|first }}</p>
+        {% endif %}
+    </div>
+    
+    <!-- Category Field -->
+    <div class="mt-4 w-[95%] m-auto">
+        <label for="id_category" class="block text-base font-medium text-gray-700 mb-2"><strong>Category</strong></label>
+        {{ form.category }}
+        {% if form.category.errors %}
+            <p class="text-red-500 text-sm">{{ form.category.errors|first }}</p>
+        {% endif %}
+    </div>
+    
+    <!-- Submit Button -->
+    <div class="mt-4 w-[95%] m-auto">
+        <button type="submit" class="w-full bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600">
+            Save Changes
+        </button>
+    </div>
 </form>
 {% endblock %}
+

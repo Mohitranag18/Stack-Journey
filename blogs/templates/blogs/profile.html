@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<div class="w-[90%] m-auto flex gap-8 justify-center p-4 border-2 border-gray-600 rounded-xl">
+    <h1><strong>Username: </strong>{{ user.username }}</h1>
+    <p><strong>Total Thanks: </strong> {{ total_thanks }}</p>
+</div>
+{% if user_posts %}
+<div class="flex flex-wrap mt-8 mb-8">
+    {% for post in user_posts %}
+        <div class="w-1/2 p-4"> <!-- Half width for each post on medium screens and above -->
+            <div class="bg-gray-200 rounded-lg ">
+                <div class="flex gap-4 justify-between p-4 ">
+                    <!-- Post Image -->
+                    <div class="w-1/2 bg-gray-800 h-48 object-cover rounded-lg">
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="bg-gray-800 w-full h-48 object-cover rounded-lg">
+                        {% endif %}
+                    </div>
+                    <!-- Post Content -->
+                    <div class="w-1/2 px-4">
+                        <h3 class="text-xl font-bold"><a href="{% url 'view_blog_post' post.pk %}" class="text-red-600 mb-3 hover:underline">{{ post.title }}</a></h3>
+                        <p class="text-lg mt-3">{{ post.content|truncatechars:140 }}</p>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="mt-4 w-full flex justify-between items-center border-t-2 border-gray-600 p-4">
+                        <p class="text-sm"><strong>By:</strong> {{ post.author.username }}</p>
+                        <a href="{% url 'view_blog_post' post.pk %}" class="text-red-600 text-sm font-semibold hover:underline">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="w-full h-screen flex justify-center items-center gap-4">
+    <p>No blog posts available.</p>
+    <a href="{% url 'create_blog_post' %}" class="text-blue-500 font-semibold hover:underline">Create Post</a>
+</div>
+{% endif %}
+
+<div class="w-full flex justify-end">
+    <a href="{% url 'logout_confirm' %}" class="px-2 py-1 bg-red-500 text-white font-medium rounded-md shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300">Logout</a>
+</div>
+
+{% endblock %}

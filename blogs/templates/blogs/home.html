@@ -3,19 +3,74 @@
 {% block title %}Home - StackJourney{% endblock %}
 
 {% block content %}
-<h2>Blog Posts</h2>
+<ul class="flex justify-center gap-8 flex-wrap">
+    <li>
+        <a href="?category=all" class="py-1 px-3 rounded-md {% if category == 'all' %}bg-gray-300{% else %}text-gray-700{% endif %} hover:underline">All</a>
+    </li>
+    <li>
+        <a href="?category=experience" class="py-1 px-3 rounded-md {% if category == 'experience' %}bg-gray-300{% else %}text-gray-700{% endif %} hover:underline">Experience</a>
+    </li>
+    <li>
+        <a href="?category=guidance" class="py-1 px-3 rounded-md {% if category == 'guidance' %}bg-gray-300{% else %}text-gray-700{% endif %} hover:underline">Guidance</a>
+    </li>
+    <li>
+        <a href="?category=roadmaps" class="py-1 px-3 rounded-md {% if category == 'roadmaps' %}bg-gray-300{% else %}text-gray-700{% endif %} hover:underline">Roadmaps</a>
+    </li>
+    <li>
+        <a href="?category=tools_resources" class="py-1 px-3 rounded-md {% if category == 'tools_resources' %}bg-gray-300{% else %}text-gray-700{% endif %} hover:underline">Tools and Resources</a>
+    </li>
+    <li>
+        <a href="?category=best_practices" class="py-1 px-3 rounded-md {% if category == 'best_practices' %}bg-gray-300{% else %}text-gray-700{% endif %} hover:underline">Best Practices</a>
+    </li>
+    <li>
+        <a href="?category=career_development" class="py-1 px-3 rounded-md {% if category == 'career_development' %}bg-gray-300{% else %}text-gray-700{% endif %} hover:underline">Career Development</a>
+    </li>
+    <li>
+        <a href="?category=project_showcase" class="py-1 px-3 rounded-md {% if category == 'project_showcase' %}bg-gray-300{% else %}text-gray-700{% endif %} hover:underline">Project Showcase</a>
+    </li>
+    <li>
+        <a href="?category=learning_challenges" class="py-1 px-3 rounded-md {% if category == 'learning_challenges' %}bg-gray-300{% else %}text-gray-700{% endif %} hover:underline">Learning Challenges</a>
+    </li>
+    <li>
+        <a href="?category=tech_news" class="py-1 px-3 rounded-md {% if category == 'tech_news' %}bg-gray-300{% else %}text-gray-700{% endif %} hover:underline">Tech News and Trends</a>
+    </li>
+    <li>
+        <a href="?category=community_stories" class="py-1 px-3 rounded-md {% if category == 'community_stories' %}bg-gray-300{% else %}text-gray-700{% endif %} hover:underline">Community Stories</a>
+    </li>
+</ul>
+
 {% if blog_posts %}
-    <ul>
+<div class="flex flex-wrap mt-8 mb-8">
     {% for post in blog_posts %}
-        <li class="p-4 bg-gray-200 rounded-lg m-9">
-            <h3><a href="{% url 'view_blog_post' post.pk %}">{{ post.title }}</a></h3>
-            <p>{{ post.content|truncatewords:20 }}</p>
-            <p><strong>By:</strong> {{ post.author.username }}</p>
-            <a href="{% url 'view_blog_post' post.pk %}" class="text-red-600">Read More</a>
-        </li>
+        <div class="w-1/2 p-4"> <!-- Half width for each post on medium screens and above -->
+            <div class="bg-gray-200 rounded-lg ">
+                <div class="flex gap-4 justify-between p-4 ">
+                    <!-- Post Image -->
+                    <div class="w-1/2 bg-gray-800 h-48 object-cover rounded-lg">
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="bg-gray-800 w-full h-48 object-cover rounded-lg">
+                        {% endif %}
+                    </div>
+                    <!-- Post Content -->
+                    <div class="w-1/2 px-4">
+                        <h3 class="text-xl font-bold"><a href="{% url 'view_blog_post' post.pk %}" class="text-red-600 mb-3 hover:underline">{{ post.title }}</a></h3>
+                        <p class="text-lg mt-3">{{ post.content|truncatechars:140 }}</p>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="mt-4 w-full flex justify-between items-center border-t-2 border-gray-600 p-4">
+                        <p class="text-sm"><strong>By:</strong> {{ post.author.username }}</p>
+                        <a href="{% url 'view_blog_post' post.pk %}" class="text-red-600 text-sm font-semibold hover:underline">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endfor %}
-    </ul>
+</div>
 {% else %}
+<div class="w-full h-screen flex justify-center items-center">
     <p>No blog posts available.</p>
+</div>
 {% endif %}
+
 {% endblock %}
