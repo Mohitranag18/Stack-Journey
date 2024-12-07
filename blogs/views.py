@@ -114,3 +114,4 @@ def view_blog_post(request, pk):
         'post': post,
         'has_thanks': has_thanks
     })
+
