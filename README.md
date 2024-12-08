@@ -22,7 +22,7 @@ To run StackJourney on your local machine, follow these steps:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/stackjourney.git
+git clone https://github.com/your-username/Stack-Journey.git
 cd stackjourney
 ```
 
@@ -70,7 +70,3 @@ This project is open-source and available under the [MIT License](LICENSE).
 ### Contact
 
 If you have any questions or need further assistance, feel free to contact me at [mohitr8998@gmail.com](mailto:mohitr8998@gmail.com).
-
----
-
-Let me know if you'd like to adjust any sections or add more details!
