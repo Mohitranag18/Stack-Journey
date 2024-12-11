@@ -54,7 +54,7 @@
                     <!-- Post Content -->
                     <div class="w-1/2 px-4">
                         <h3 class="text-xl font-bold"><a href="{% url 'view_blog_post' post.pk %}" class="text-red-600 mb-3 hover:underline">{{ post.title }}</a></h3>
-                        <p class="text-lg mt-3">{{ post.content|truncatechars:140 }}</p>
+                        <p class="text-lg mt-3">{{ post.content|truncatechars:80 }}</p>
                     </div>
                 </div>
                 <div class="flex flex-col items-center">
