@@ -4,6 +4,7 @@
 
 [![Watch the video](./stack_journey_thumbnail.png)](https://youtu.be/7q_WaEFhV80)
 
+[>>> Watch demo video](https://youtu.be/7q_WaEFhV80)
 
 ## Features
 
