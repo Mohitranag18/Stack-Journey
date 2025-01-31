@@ -2,6 +2,9 @@
 
 **StackJourney** is a blogging platform designed for developers and tech enthusiasts to share their experiences, tips, and guidance with others. It allows users to create, read, edit, and delete posts, give thanks to others for their informative blogs, and maintain personalized profiles. Whether you're a beginner or an experienced developer, StackJourney aims to create a space for learning, sharing, and growing together.
 
+[![Watch the video](./assets/demo-thumbnai)](https://youtu.be/7q_WaEFhV80)
+
+
 ## Features
 
 - **CRUD Operations**: Users can create, read, edit, and delete blog posts.
